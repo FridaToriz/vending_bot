@@ -30,6 +30,11 @@ const LSForm = () => {
                 <input type="password"/>
             </div>
             </div>
+            <div className="forgot-password">¿Olvidaste tu contraseña? <span>Click aquí</span> </div>
+            <div className="submit-container">
+                <div className="submit">Registrarse</div>
+                <div className="submit">Entrar</div>
+            </div>
         </div>
     )
 }

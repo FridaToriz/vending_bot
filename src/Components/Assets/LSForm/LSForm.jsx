@@ -1,15 +1,15 @@
 import React from "react"
 import "./LSForm.css"
 
-import user_icon from "../Assets/usuario.png"
-import mail_icon from "../Assets/mail.png"
-import password_icon from "../Assets/password.png"
+import user_icon from "../usuario.png"
+import mail_icon from "../mail.png"
+import password_icon from "../password.png"
 
 const LSForm = () => {
     return(
         <div className="container">
             <div className="header">
-            <div className="text">Registarse</div>
+            <div className="text">Registrarse</div>
             <div className="underline"></div>
             </div>
             <div className="inputs">

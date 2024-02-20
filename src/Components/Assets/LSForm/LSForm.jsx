@@ -17,20 +17,20 @@ const LSForm = () => {
             </div>
             <div className="inputs">
             {action==="Registro"?<div></div>: <div className="input">
-                <img src= {user_icon} className="icon" alt="ícono de usuarie" />
+                <img src= {user_icon} alt="ícono de usuarie" />
                 <input type="text" placeholder="Nombre" />
             </div> }
            
             </div>
             <div className="inputs">
             <div className="input">
-                <img src= {mail_icon} className="icon" alt="ícono de email" />
+                <img src= {mail_icon} alt="ícono de email" />
                 <input type="email" placeholder="Correo" />
             </div>
             </div>
             <div className="inputs">
             <div className="input">
-                <img src= {password_icon} className="icon" alt="ícono de contraseña" />
+                <img src= {password_icon} alt="ícono de contraseña" />
                 <input type="password" placeholder="Contraseña" />
             </div>
             </div>

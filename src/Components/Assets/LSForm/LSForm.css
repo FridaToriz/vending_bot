@@ -96,6 +96,7 @@
     color:rgba(255, 240, 240, 0.662);
  }
 
- .icon{
-    color: blue;
- }
+img{
+   width: 30px;
+   height: auto;
+}

@@ -42,7 +42,7 @@
     margin: auto;
     width: 480px;
     height: 80px;
-    background-color: rgb(213, 211, 211);
+    background-color: rgb(210, 205, 205);
     border-radius: 6px;
  }
  .input img{
@@ -55,14 +55,14 @@
     background-color: transparent;
     border: none;
     outline: none;
-    color: rgba(255, 240, 240, 0.662);
+    color: rgba(12, 1, 1, 0.662);
     font-size: 20px;
  }
 
  .forgot-password{
     padding-left: 62px;
     margin-top: 27px;
-    color: aliceblue;
+    color: rgb(29, 69, 103);
     font-size: 18px;
  }
 
@@ -93,7 +93,7 @@
 
  .gray{
     background:rgb(213, 211, 211);
-    color:rgba(255, 240, 240, 0.662);
+    color:rgba(18, 15, 15, 0.662);
  }
 
 img{

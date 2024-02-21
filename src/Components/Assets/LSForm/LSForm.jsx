@@ -37,8 +37,8 @@ const LSForm = () => {
             {action==="Registro"?<div></div>:<div className="forgot-password">¿Olvidaste tu contraseña? <span>Click aquí</span> </div> }
             
             <div className="submit-container">
+                <div className= {action==="Registro"?"submit gray":"submit"} onClick={()=>{setAction("Entrar")}} > Entrar</div>
                 <div className= {action==="Entrar"?"submit gray":"submit"} onClick={()=>{setAction("Registro")}} >Registro</div>
-                <div className= {action==="Registro"?"submit gray":"submit"} onClick={()=>{setAction("Entrar")}} >Entrar</div>
             </div>
         </div>
     )

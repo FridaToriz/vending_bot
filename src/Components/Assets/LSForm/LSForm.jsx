@@ -5,7 +5,7 @@ import user_icon from "../usuario.png"
 import mail_icon from "../mail.png"
 import password_icon from "../password.png"
 
-const LSForm = () => {
+const LSFormulario = () => {
 
     const [action,setAction]= useState("Registro");
 
@@ -44,4 +44,4 @@ const LSForm = () => {
     )
 }
 
-export default LSForm
+export default LSFormulario

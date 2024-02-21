@@ -16,7 +16,7 @@ const LSForm = () => {
             <div className="underline"></div>
             </div>
             <div className="inputs">
-            {action==="Registro"?<div></div>: <div className="input">
+            {action==="Ingresar"?<div></div>: <div className="input">
                 <img src= {user_icon} alt="ícono de usuarie" />
                 <input type="text" placeholder="Nombre" />
             </div> }
@@ -37,8 +37,8 @@ const LSForm = () => {
             {action==="Registro"?<div></div>:<div className="forgot-password">¿Olvidaste tu contraseña? <span>Click aquí</span> </div> }
             
             <div className="submit-container">
-                <div className= {action==="Registro"?"submit gray":"submit"} onClick={()=>{setAction("Entrar")}} > Entrar</div>
-                <div className= {action==="Entrar"?"submit gray":"submit"} onClick={()=>{setAction("Registro")}} >Registro</div>
+                <div className= {action==="Ingresar"?"submit gray":"submit"} onClick={()=>{setAction("Registro")}} > Registro</div>
+                <div className= {action==="Registro"?"submit gray":"submit"} onClick={()=>{setAction("Ingresar")}} >Ingresar</div>
             </div>
         </div>
     )

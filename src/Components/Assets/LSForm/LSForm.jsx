@@ -20,6 +20,16 @@ const LSFormulario = () => {
     const [emailError, setEmailError]= useState("");
     const [passwordError, setPasswordError]= useState(""); 
     // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal el campo de email o contraseña
+    const [registroDatos, setRegistroDatos] = useState({
+        nombre: " ",
+        email: " ",
+        contraseña: " "
+    });
+    const [ingresarDatos, setIngresarDatos] = useState({
+        email:" ",
+        contraseña:" "
+    });
+    //estas dos evitan que los datos ingresados en un formulario se muestren en el otro
 
     const handleRegistro = () =>{
         //valida la entrada de le usuarie
@@ -36,6 +46,26 @@ const LSFormulario = () => {
         } else {
             setPasswordError("");
         } //si la entrada es válida, continúa el registro
+        if (isValid){
+
+        }
+    };
+
+    const handleIngresar = () =>{
+        //valida la entrada de le usuarie en el formulario de ingresar
+        let isValid = true;
+        if (!email.includes("@")){
+            setEmailError ("Correo electrónico no válido");
+            isValid = false;
+        } else {
+            setEmailError("");
+        }
+        if (password.length<8) {
+            setPasswordError("La contraseña debe tener al menos 8 caracteres")
+            isValid = false; 
+        } else {
+            setPasswordError("");
+        } 
         if (isValid){
 
         }
@@ -58,7 +88,22 @@ const LSFormulario = () => {
             <div className="inputs">
                 <div className="input">
                     <img src= {mail_icon} alt="ícono de email" /> 
-                    <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Correo electrónico" />
+                    <input id="email" 
+                    type="email" 
+                    required 
+                    placeholder="Correo electrónico"
+                    value={action === "Registro"? registroDatos.email : ingresarDatos.email} 
+                    onChange={(e) => 
+                        action === "Registro" ? setRegistroDatos({
+                            ...registroDatos,
+                            email: e.target.value
+                        })
+                        : setIngresarDatos ({
+                            ...ingresarDatos,
+                            email: e.target.value
+                        })
+                    }  
+                     />
                     {emailError && <div className="error-message"> {emailError}</div>}
                 </div> 
                      
@@ -66,7 +111,25 @@ const LSFormulario = () => {
             <div className="inputs">
                 <div className="input">
                     <img src= {password_icon} alt="ícono de candado" />
-                    <input id="password" type="password" minLength="8" pattern="[a-z0-5]{8}" value={password} onChange={(e)=> setPassword(e.target.value)} required placeholder="Contraseña" />
+                    <input id="password" 
+                    type="password" 
+                    minLength="8" 
+                    pattern="[a-z0-5]{8}" 
+                    required
+                    placeholder="Contraseña"
+                    value={action=== "Registro"? registroDatos.contraseña : ingresarDatos.contraseña} 
+                    onChange={(e)=> 
+                        action === "Registro"
+                        ? setRegistroDatos({
+                            ...registroDatos,
+                            contraseña: e.target.value
+                        })
+                        : setIngresarDatos({
+                            ...ingresarDatos,
+                            contraseña: e.target.value
+                        })
+                    }
+                    />
                     {passwordError && <div className="error-message">{passwordError}</div>}
                 </div>
             </div>
@@ -93,7 +156,7 @@ const LSFormulario = () => {
                     onClick={()=>{
                         setAction("Ingresar");
                         setShowName(false); 
-                        handleRegistro();
+                        handleIngresar();
                         //esto oculta el campo de nombre cuando le dan en ingresar
                     }}
                 >

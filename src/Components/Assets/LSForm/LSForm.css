@@ -69,6 +69,7 @@
  .forgot-password span{
     color: #F6695F;
     cursor: pointer;
+    text-decoration: underline;
  }
 
  .submit-container{

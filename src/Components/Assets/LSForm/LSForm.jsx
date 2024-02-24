@@ -15,6 +15,32 @@ const LSFormulario = () => {
         window.location.href = "/url para la página de recuperarcontraseña";
     };
 
+    const [email, setEmail]= useState("");
+    const [password, setPassword]= useState("");
+    const [emailError, setEmailError]= useState("");
+    const [passwordError, setPasswordError]= useState(""); 
+    // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal el campo de email o contraseña
+
+    const handleRegistro = () =>{
+        //valida la entrada de le usuarie
+        let isValid = true;
+        if (!email.includes("@")){
+            setEmailError ("Correo electrónico no válido");
+            isValid = false;
+        } else {
+            setEmailError("");
+        }
+        if (password.length<8) {
+            setPasswordError("La contraseña debe tener al menos 8 caracteres")
+            isValid = false; 
+        } else {
+            setPasswordError("");
+        } //si la entrada es válida, continúa el registro
+        if (isValid){
+
+        }
+    };
+
     return(
         <div className="container">
             <div className="header">
@@ -31,14 +57,17 @@ const LSFormulario = () => {
             </div>
             <div className="inputs">
                 <div className="input">
-                    <img src= {mail_icon} alt="ícono de email" />
-                    <input id="email" type="email" required placeholder="Correo" />
-                </div>
-            </div>
+                    <img src= {mail_icon} alt="ícono de email" /> 
+                    <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Correo electrónico" />
+                    {emailError && <div className="error-message"> {emailError}</div>}
+                </div> 
+                     
+            </div> 
             <div className="inputs">
                 <div className="input">
                     <img src= {password_icon} alt="ícono de candado" />
-                    <input id="password" type="password" minLength="8" pattern="[a-z0-5]{8}" required placeholder="Contraseña" />
+                    <input id="password" type="password" minLength="8" pattern="[a-z0-5]{8}" value={password} onChange={(e)=> setPassword(e.target.value)} required placeholder="Contraseña" />
+                    {passwordError && <div className="error-message">{passwordError}</div>}
                 </div>
             </div>
             {action==="Ingresar" &&(   //esto hace que sólo se muestre en la parte de Ingresar  
@@ -50,17 +79,22 @@ const LSFormulario = () => {
                     className={action === "Ingresar"? "submit gray" : "submit"}
                     onClick={()=> {
                         setAction("Registro");
-                        setShowName(true); //esto muestra el nombre cuando le das en "regsitro" 
+                        setShowName(true); 
+                        handleRegistro();
+                        //esto muestra el nombre cuando le das en "regsitro" 
+                        //y también hace que el botón de registro realmente sea un botón
                     }} //el {" "} es sólo un espacio en blanco que se deja por fines de mejorar la legibilidad 
                 > 
                     {" "} 
-                    Registro
+                     Registro
                 </div> 
                 <div 
                     className={action==="Registro"?"submit gray":"submit"}
                     onClick={()=>{
                         setAction("Ingresar");
-                        setShowName(false); //esto oculta el campo de nombre cuando le dan en ingresar
+                        setShowName(false); 
+                        handleRegistro();
+                        //esto oculta el campo de nombre cuando le dan en ingresar
                     }}
                 >
                     Ingresar

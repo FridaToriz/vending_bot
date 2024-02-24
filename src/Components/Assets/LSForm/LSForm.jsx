@@ -10,6 +10,11 @@ const LSFormulario = () => {
     const [action,setAction]= useState("Registro");
     const [showName, setShowName] = useState(true);//esta de aquí es para usar valores booleanos en el código y que esté más limpio y sea más sencillo de leer
 
+    const handleForgotPasswordClick = () =>{
+        //esto es para redirigir al usuario a una página de recuperación de contraseña
+        window.location.href = "/url para la página de recuperarcontraseña";
+    };
+
     return(
         <div className="container">
             <div className="header">
@@ -36,8 +41,8 @@ const LSFormulario = () => {
                     <input id="password" type="password" minLength="8" pattern="[a-z0-5]{8}" required placeholder="Contraseña" />
                 </div>
             </div>
-            {action==="Registro" &&(    
-                <div  className="forgot-password">¿Olvidaste tu contraseña? <span>Click aquí</span> </div> 
+            {action==="Ingresar" &&(   //esto hace que sólo se muestre en la parte de Ingresar  
+                <div  className="forgot-password">¿Olvidaste tu contraseña? <span onClick={handleForgotPasswordClick}>Click aquí</span> </div> 
             )}
             
             <div className="submit-container">

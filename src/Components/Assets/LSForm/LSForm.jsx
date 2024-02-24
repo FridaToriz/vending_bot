@@ -18,20 +18,20 @@ const LSFormulario = () => {
             <div className="inputs">
             {action==="Ingresar"?<div></div>: <div className="input">
                 <img src= {user_icon} alt="ícono de usuarie" />
-                <input type="text" placeholder="Nombre" />
+                <input id="Name" type="text" required placeholder="Nombre" />
             </div> }
            
             </div>
             <div className="inputs">
             <div className="input">
                 <img src= {mail_icon} alt="ícono de email" />
-                <input type="email" placeholder="Correo" />
+                <input id="email" type="email" required placeholder="Correo" />
             </div>
             </div>
             <div className="inputs">
             <div className="input">
                 <img src= {password_icon} alt="ícono de contraseña" />
-                <input type="password" placeholder="Contraseña" />
+                <input id="password" type="password" minLength="8" pattern="[a-z0-5]{8}" required placeholder="Contraseña" />
             </div>
             </div>
             {action==="Registro"?<div></div>:<div className="forgot-password">¿Olvidaste tu contraseña? <span>Click aquí</span> </div> }

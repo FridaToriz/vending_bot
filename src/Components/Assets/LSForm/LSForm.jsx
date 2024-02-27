@@ -188,4 +188,4 @@ const LSFormulario = () => {
     );
 }
 
-export default LSFormulario
+export default LSFormulario;

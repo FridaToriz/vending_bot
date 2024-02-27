@@ -33,8 +33,7 @@ const LSFormulario = () => {
         }
         return {isValid, emailError, passwordError};
     };
-    //const [email, setEmail]= useState("");
-    //const [password, setPassword]= useState("");
+   
     const [emailError, setEmailError]= useState("");
     const [passwordError, setPasswordError]= useState(""); 
     // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal el campo de email o contraseña
@@ -81,7 +80,10 @@ const LSFormulario = () => {
                 {showName && (
                     <div className="input">
                         <img src= {user_icon} alt="ícono de usuarie" />
-                        <input id="Name" type="text" required placeholder="Nombre" />
+                        <input id="Name" 
+                        type="text" 
+                        required 
+                        placeholder="Nombre" />
                 </div> )}
            
             </div>
@@ -143,12 +145,21 @@ const LSFormulario = () => {
                 <div
                     className={action === "Ingresar"? "submit gray" : "submit"}
                     onClick={()=> {
-                        setAction("Registro");
-                        setShowName(true); 
-                        handleRegistro();
+                        if (action ==="Registro") {
+                            const {isValid, emailError, passwordError} = validateInput(registroDatos.email, registroDatos.contraseña);
+                            if (isValid) {
+                                handleRegistro();
+                            } else {
+                                setEmailError(emailError);
+                                setPasswordError (passwordError);
+                            }   
+                            } 
+                            setAction("Registro");
+                            setShowName(true); 
+                        } 
                         //esto muestra el nombre cuando le das en "regsitro" 
                         //y también hace que el botón de registro realmente sea un botón
-                    }} //el {" "} es sólo un espacio en blanco que se deja por fines de mejorar la legibilidad 
+                    } //el {" "} es sólo un espacio en blanco que se deja por fines de mejorar la legibilidad 
                 > 
                     {" "} 
                      Registro
@@ -156,9 +167,17 @@ const LSFormulario = () => {
                 <div 
                     className={action==="Registro"?"submit gray":"submit"}
                     onClick={()=>{
-                        setAction("Ingresar");
-                        setShowName(false); 
-                        handleIngresar();
+                        if (action ==="Ingresar") {
+                            const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña);
+                            if (isValid) {
+                                handleIngresar();
+                            } else {
+                                setEmailError(emailError);
+                                setPasswordError (passwordError);
+                            }   
+                            } 
+                            setAction("Registro");
+                            setShowName(false); 
                         //esto oculta el campo de nombre cuando le dan en ingresar
                     }}
                 >
@@ -166,7 +185,7 @@ const LSFormulario = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default LSFormulario

@@ -15,8 +15,26 @@ const LSFormulario = () => {
         window.location.href = "/url para la página de recuperarcontraseña";
     };
 
-    const [email, setEmail]= useState("");
-    const [password, setPassword]= useState("");
+    //la siguiente función es para englobar los mensajes de error y hacer el código más limpio
+    const validateInput = (email, password) =>{
+        let isValid = true;
+        let emailError = "";
+        let passwordError = "";
+
+        if (!email.includes("@")){
+            emailError = "Correo electrónico no válido";
+            isValid= false;
+        }
+
+        if (password.length <8) {
+            passwordError = "La contraseña debe tener al menos 8 caracteres";
+            isValid = "false";
+            
+        }
+        return {isValid, emailError, passwordError};
+    };
+    //const [email, setEmail]= useState("");
+    //const [password, setPassword]= useState("");
     const [emailError, setEmailError]= useState("");
     const [passwordError, setPasswordError]= useState(""); 
     // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal el campo de email o contraseña
@@ -33,42 +51,24 @@ const LSFormulario = () => {
 
     const handleRegistro = () =>{
         //valida la entrada de le usuarie
-        let isValid = true;
-        if (!email.includes("@")){
-            setEmailError ("Correo electrónico no válido");
-            isValid = false;
-        } else {
-            setEmailError("");
-        }
-        if (password.length<8) {
-            setPasswordError("La contraseña debe tener al menos 8 caracteres")
-            isValid = false; 
-        } else {
-            setPasswordError("");
-        } //si la entrada es válida, continúa el registro
-        if (isValid){
-
+        const { isValid, emailError, passwordError} =validateInput(registroDatos.email, registroDatos.contraseña);
+        if (!isValid) {
+            setEmailError(emailError);
+            setPasswordError(passwordError);
+            return;
+            //si los datos son válidos, continúa el registro
         }
     };
 
     const handleIngresar = () =>{
         //valida la entrada de le usuarie en el formulario de ingresar
-        let isValid = true;
-        if (!email.includes("@")){
-            setEmailError ("Correo electrónico no válido");
-            isValid = false;
-        } else {
-            setEmailError("");
-        }
-        if (password.length<8) {
-            setPasswordError("La contraseña debe tener al menos 8 caracteres")
-            isValid = false; 
-        } else {
-            setPasswordError("");
-        } 
-        if (isValid){
-
-        }
+       const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña);
+       if (!isValid) {
+        setEmailError(emailError);
+        setPasswordError(passwordError);
+        return;
+        //continua si el ingreso es válido
+       }
     };
 
     return(

@@ -28,7 +28,7 @@ const LSFormulario = () => {
 
         if (password.length <8) {
             passwordError = "La contraseña debe tener al menos 8 caracteres";
-            isValid = "false";
+            isValid = false;
             
         }
         return {isValid, emailError, passwordError};
@@ -103,8 +103,10 @@ const LSFormulario = () => {
                             email: e.target.value
                         })
                     }  
-                     />
-                    {emailError && <div className="error-message"> {emailError}</div>}
+                     /> 
+                     {/* //el span es para que el mensaje se muestre abajo en vez de a un lado */}
+                    
+                    {emailError && <span className="error-message"> {emailError}</span>} 
                 </div> 
                      
             </div> 
@@ -130,7 +132,7 @@ const LSFormulario = () => {
                         })
                     }
                     />
-                    {passwordError && <div className="error-message">{passwordError}</div>}
+                    {passwordError && <span className="error-message">{passwordError}</span>}
                 </div>
             </div>
             {action==="Ingresar" &&(   //esto hace que sólo se muestre en la parte de Ingresar  

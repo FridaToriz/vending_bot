@@ -110,7 +110,17 @@ const LSFormulario = () => {
                     
                     {emailError && <span className="error-message"> {emailError}</span>} 
                 </div> 
-                     
+            
+                <div className="inputs">
+                    <div className="input">    
+                        <input id="phone"
+                        type="text"
+                        pattern="/^[0-9]{10}$/"
+                        required
+                        placeholder="Número de teléfono"
+                    />
+                    </div> 
+                </div>
             </div> 
             <div className="inputs">
                 <div className="input">

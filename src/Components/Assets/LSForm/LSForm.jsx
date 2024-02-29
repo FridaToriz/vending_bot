@@ -4,6 +4,7 @@ import "./LSForm.css"
 import user_icon from "../usuario.png"
 import mail_icon from "../mail.png"
 import password_icon from "../password.png"
+import phone_icon from "../phone.png"
 
 const LSFormulario = () => {
 
@@ -112,7 +113,8 @@ const LSFormulario = () => {
                 </div> 
             
                 <div className="inputs">
-                    <div className="input">    
+                    <div className="input">  
+                        <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
                         type="text"
                         pattern="/^[0-9]{10}$/"

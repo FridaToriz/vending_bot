@@ -64,7 +64,7 @@ const LSFormulario = () => {
        const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña);
        if (!isValid) {
         setEmailError(emailError);
-        setPasswordError(passwordError);
+        setPasswordError(passwordError); 
         return;
         //continua si el ingreso es válido
        }
@@ -102,7 +102,7 @@ const LSFormulario = () => {
                         })
                         : setIngresarDatos ({
                             ...ingresarDatos,
-                            email: e.target.value
+                            email: e.target.value 
                         })
                     }  
                      /> 
@@ -176,7 +176,7 @@ const LSFormulario = () => {
                                 setPasswordError (passwordError);
                             }   
                             } 
-                            setAction("Registro");
+                            setAction("Ingresar");
                             setShowName(false); 
                         //esto oculta el campo de nombre cuando le dan en ingresar
                     }}

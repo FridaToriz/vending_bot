@@ -22,7 +22,7 @@ const LSFormulario = () => {
     // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal algún campo
 
     //la siguiente función es para englobar los mensajes de error y hacer el código más limpio
-    const validateInput = (email, password, phone) =>{
+    const validateInput = (email, phone, password) =>{
         let isValid = true;
         let emailError = "";
         let passwordError = "";
@@ -33,15 +33,15 @@ const LSFormulario = () => {
             isValid= false;
         }
 
+        if (!phone.match(/^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{8})$/)) {
+            phoneError = "El número de teléfono no es válido";
+            isValid = false;
+        }
+
         if (password.length <8) {
             passwordError = "La contraseña debe tener al menos 8 caracteres";
             isValid = false;
             
-        }
-
-        if (!phone.match(/^\d{10}$/)) {
-            phoneError = "El número de teléfono no es válido";
-            isValid = false;
         }
 
         return {isValid, emailError, passwordError, phoneError};
@@ -62,7 +62,7 @@ const LSFormulario = () => {
 
     const handleRegistro = () =>{
         //valida la entrada de le usuarie
-        const { isValid, emailError, passwordError} =validateInput(registroDatos.email, registroDatos.contraseña, registroDatos.phone);
+        const {isValid, emailError, passwordError, phoneError} =validateInput(registroDatos.email, registroDatos.contraseña, registroDatos.phone);
         if (!isValid) {
             setEmailError(emailError);
             setPasswordError(passwordError);
@@ -74,7 +74,7 @@ const LSFormulario = () => {
 
     const handleIngresar = () =>{
         //valida la entrada de le usuarie en el formulario de ingresar
-       const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña, ingresarDatos.phone);
+       const {isValid, emailError, passwordError, phoneError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña, ingresarDatos.phone);
        if (!isValid) {
         setEmailError(emailError);
         setPasswordError(passwordError); 
@@ -129,11 +129,11 @@ const LSFormulario = () => {
                     <div className="input">  
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
-                        type="text"
-                        pattern="/^\d{10}$/"
+                        type="tel"
+                        pattern="/^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{8})$/)" 
                         required
                         placeholder="Número de teléfono"
-                        value={action === "Registro"? registroDatos.phone : ingresarDatos.phone} 
+                        value={action === "Registro" ? registroDatos.phone : ingresarDatos.phone} 
                     onChange={(e) => 
                         action === "Registro" ? setRegistroDatos({
                             ...registroDatos,

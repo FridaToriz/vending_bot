@@ -16,11 +16,17 @@ const LSFormulario = () => {
         window.location.href = "/url para la página de recuperarcontraseña";
     };
 
+    const [emailError, setEmailError]= useState("");
+    const [passwordError, setPasswordError]= useState(""); 
+    const [phoneError, setPhoneError] = useState("");
+    // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal algún campo
+
     //la siguiente función es para englobar los mensajes de error y hacer el código más limpio
-    const validateInput = (email, password) =>{
+    const validateInput = (email, password, phone) =>{
         let isValid = true;
         let emailError = "";
         let passwordError = "";
+        let phoneError = "";
 
         if (!email.includes("@")){
             emailError = "Correo electrónico no válido";
@@ -32,29 +38,35 @@ const LSFormulario = () => {
             isValid = false;
             
         }
-        return {isValid, emailError, passwordError};
+
+        if (!phone.match(/^[0-9]{10}$/)) {
+            phoneError = "El número de teléfono no es válido";
+            isValid = false;
+        }
+
+        return {isValid, emailError, passwordError, phoneError};
     };
    
-    const [emailError, setEmailError]= useState("");
-    const [passwordError, setPasswordError]= useState(""); 
-    // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal el campo de email o contraseña
     const [registroDatos, setRegistroDatos] = useState({
         nombre: " ",
         email: " ",
-        contraseña: " "
+        contraseña: " ",
+        phone: " "
     });
     const [ingresarDatos, setIngresarDatos] = useState({
         email:" ",
-        contraseña:" "
+        contraseña:" ",
+        phone: " "
     });
     //estas dos evitan que los datos ingresados en un formulario se muestren en el otro
 
     const handleRegistro = () =>{
         //valida la entrada de le usuarie
-        const { isValid, emailError, passwordError} =validateInput(registroDatos.email, registroDatos.contraseña);
+        const { isValid, emailError, passwordError} =validateInput(registroDatos.email, registroDatos.contraseña, registroDatos.phone);
         if (!isValid) {
             setEmailError(emailError);
             setPasswordError(passwordError);
+            setPhoneError(phoneError);
             return;
             //si los datos son válidos, continúa el registro
         }
@@ -62,10 +74,11 @@ const LSFormulario = () => {
 
     const handleIngresar = () =>{
         //valida la entrada de le usuarie en el formulario de ingresar
-       const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña);
+       const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña, ingresarDatos.phone);
        if (!isValid) {
         setEmailError(emailError);
         setPasswordError(passwordError); 
+        setPhoneError(phoneError);
         return;
         //continua si el ingreso es válido
        }
@@ -117,9 +130,20 @@ const LSFormulario = () => {
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
                         type="text"
-                        pattern="/^[0-9]{10}$/"
+                        pattern={/^[0-9]{10}$/}
                         required
                         placeholder="Número de teléfono"
+                        value={action === "Registro"? registroDatos.phone : ingresarDatos.phone} 
+                    onChange={(e) => 
+                        action === "Registro" ? setRegistroDatos({
+                            ...registroDatos,
+                            phone: e.target.value
+                        })
+                        : setIngresarDatos ({
+                            ...ingresarDatos,
+                            phone: e.target.value 
+                        })
+                    }  
                     />
                     </div> 
                 </div>
@@ -158,12 +182,13 @@ const LSFormulario = () => {
                     className={action === "Ingresar"? "submit gray" : "submit"}
                     onClick={()=> {
                         if (action ==="Registro") {
-                            const {isValid, emailError, passwordError} = validateInput(registroDatos.email, registroDatos.contraseña);
+                            const {isValid, emailError, passwordError, phoneError} = validateInput(registroDatos.email, registroDatos.contraseña, registroDatos.phone);
                             if (isValid) {
                                 handleRegistro();
                             } else {
                                 setEmailError(emailError);
                                 setPasswordError (passwordError);
+                                setPhoneError(phoneError);
                             }   
                             } 
                             setAction("Registro");
@@ -180,12 +205,13 @@ const LSFormulario = () => {
                     className={action==="Registro"?"submit gray":"submit"}
                     onClick={()=>{
                         if (action ==="Ingresar") {
-                            const {isValid, emailError, passwordError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña);
+                            const {isValid, emailError, passwordError, phoneError} = validateInput(ingresarDatos.email, ingresarDatos.contraseña, ingresarDatos.phone);
                             if (isValid) {
                                 handleIngresar();
                             } else {
                                 setEmailError(emailError);
                                 setPasswordError (passwordError);
+                                setPhoneError(phoneError);
                             }   
                             } 
                             setAction("Ingresar");
@@ -200,4 +226,4 @@ const LSFormulario = () => {
     );
 }
 
-export default LSFormulario;
+export default LSFormulario; 

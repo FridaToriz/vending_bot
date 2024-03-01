@@ -22,7 +22,7 @@ const LSFormulario = () => {
     // esto servirá para poder agregar mensajes de error en caso de que le usuarie llene mal algún campo
 
     //la siguiente función es para englobar los mensajes de error y hacer el código más limpio
-    const validateInput = (email, phone, password) =>{
+    const validateInput = (email, password, phone) =>{
         let isValid = true;
         let emailError = "";
         let passwordError = "";
@@ -32,16 +32,15 @@ const LSFormulario = () => {
             emailError = "Correo electrónico no válido";
             isValid= false;
         }
-
-        if (!phone.match(/^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{8})$/)) {
-            phoneError = "El número de teléfono no es válido";
-            isValid = false;
-        }
-
         if (password.length <8) {
             passwordError = "La contraseña debe tener al menos 8 caracteres";
             isValid = false;
             
+        }
+
+        if (!phone.match(/^\d{10}$/)) {
+            phoneError = "El número de teléfono no es válido";
+            isValid = false;
         }
 
         return {isValid, emailError, passwordError, phoneError};
@@ -129,8 +128,8 @@ const LSFormulario = () => {
                     <div className="input">  
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
-                        type="tel"
-                        pattern="/^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{8})$/)" 
+                        type="text"
+                        pattern="/^\d{10}$/" 
                         required
                         placeholder="Número de teléfono"
                         value={action === "Registro" ? registroDatos.phone : ingresarDatos.phone} 
@@ -145,6 +144,7 @@ const LSFormulario = () => {
                         })
                     }  
                     />
+                    {phoneError && <span className="error-message"> {phoneError}</span>} 
                     </div> 
                 </div>
             </div> 

@@ -130,7 +130,7 @@ const LSFormulario = () => {
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
                         type="text"
-                        pattern={/^[0-9]{10}$/}
+                        pattern="/^[0-9]{10}$/"
                         required
                         placeholder="Número de teléfono"
                         value={action === "Registro"? registroDatos.phone : ingresarDatos.phone} 

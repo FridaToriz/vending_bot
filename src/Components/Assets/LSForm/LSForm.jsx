@@ -39,7 +39,7 @@ const LSFormulario = () => {
             
         }
 
-        if (!phone.match(/^[0-9]{10}$/)) {
+        if (!phone.match(/^\d{10}$/)) {
             phoneError = "El número de teléfono no es válido";
             isValid = false;
         }
@@ -51,7 +51,7 @@ const LSFormulario = () => {
         nombre: " ",
         email: " ",
         contraseña: " ",
-        phone: " "
+        phone: " " 
     });
     const [ingresarDatos, setIngresarDatos] = useState({
         email:" ",
@@ -130,7 +130,7 @@ const LSFormulario = () => {
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
                         type="text"
-                        pattern="/^[0-9]{10}$/"
+                        pattern="/^\d{10}$/"
                         required
                         placeholder="Número de teléfono"
                         value={action === "Registro"? registroDatos.phone : ingresarDatos.phone} 

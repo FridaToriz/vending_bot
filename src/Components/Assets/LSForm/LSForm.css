@@ -23,6 +23,12 @@
     font-weight: 700;
 }
 
+body{
+   width: 100%;
+   margin: 0;
+   height: 100vh;
+}
+
 .underline{
     width: 100px;
     height: 6px;
@@ -31,10 +37,10 @@
 }
 
 .inputs{
-    margin-top: 55px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 2px;
 }
  .input{
     display: flex;
@@ -44,7 +50,9 @@
     height: 80px;
     background-color: #D6E5E6;
     border-radius: 6px;
+    padding: auto;
  }
+
  .input img{
     margin: 0px 30px;
  }

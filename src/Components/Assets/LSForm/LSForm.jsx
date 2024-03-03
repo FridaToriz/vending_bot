@@ -97,11 +97,11 @@ const LSFormulario = () => {
                         type="text" 
                         required 
                         placeholder="Nombre" />
-                </div> )}
+                </div>)} 
            
             </div>
             <div className="inputs">
-                <div className="input">
+                <div className="input email">
                     <img src= {mail_icon} alt="ícono de email" /> 
                     <input id="email" 
                     type="email" 
@@ -125,7 +125,7 @@ const LSFormulario = () => {
                 </div> 
             
                 <div className="inputs">
-                    <div className="input">  
+                    <div className="input phone">  
                         <img src= {phone_icon} alt="ícono de teléfono"/>  
                         <input id="phone"
                         type="text"

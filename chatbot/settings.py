@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'chatbot.urls'
+ROOT_URLCONF = 'chatbotapp.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'chatbot',
         'USER': 'diana',
-        'PASSWORD': 'psql333',  # Empty, it has no pw
+        'PASSWORD': 'psql333',  
         'HOST': 'localhost',  # 127.0.0.1
         'PORT': '5432',  
     }

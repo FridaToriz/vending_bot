@@ -1,3 +1,13 @@
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+path('admin/', admin.site.urls),
+    # urls from chatbotapp
+path('', include('chatbotapp.urls')),  # Redirects to urls.py from chatbotapp
+
+]
+
 """
 URL configuration for chatbot project.
 
@@ -14,3 +24,5 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+ 
+ 

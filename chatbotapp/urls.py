@@ -10,9 +10,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # Redirection to urls from chatbotapp
-    path('', include('chatbotapp.urls')),  # Redirects to urls.py from chatbotapp
 # Routes for users
     path('users/', UsersListCreate.as_view(), name='user-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroy.as_view(), name='user-detail'),
